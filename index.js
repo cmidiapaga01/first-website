@@ -2,7 +2,7 @@
 
 
 //{mode: 'no-cors'}
-fetch('http://www.geoplugin.net/json.gp').then((response) => {
+fetch('https://www.geoplugin.net/json.gp').then((response) => {
 return response.json()
     
   }).then(data => {
