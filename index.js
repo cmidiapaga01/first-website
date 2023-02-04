@@ -1,0 +1,1 @@
+alert("Teo is the next milionare!")
