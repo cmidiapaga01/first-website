@@ -1,7 +1,11 @@
 //alert("Teo is the next milionare!")
 
 
-
-fetch('https://gd.geobytes.com/GetCityDetails?callback=?', function(data) {
-  console.log(JSON.stringify(data, null, 2));
-});
+//{mode: 'no-cors'}
+fetch('https://www.geoplugin.net/json.gp').then((response) => {
+return response.json()
+    
+  }).then(data => {
+    console.log(data)
+document.getElementById('ip').innerText = data.geoplugin_request
+  })
