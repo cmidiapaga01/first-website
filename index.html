@@ -65,14 +65,80 @@
                 Citação especial
         </blockquote>
         <p>    Aprenda HTML de forma simples e fácil <strong><em>Be yourself</em></strong>; everyone else is already taken.</p>
-    </div>
     </article>
-    <footer>
-    </footer> 
      <!--<iframe style= "padding-top: 1000px; width: 560px; height: 315px; src="https://www.youtube.com/embed/oLmbJ_B-04o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>-->
-<script>
-        alert("Hello World! -alert");
-        console.log("Hello World! -console");
-</script>
 </body>
+<div id="whatsapp-button"></div>
+
+<form id="contact-form" method="post">
+    <label for="name">Nome:</label>
+    <input type="text" id="name" name="name" required>
+  
+    <label for="email">E-mail:</label>
+    <input type="email" id="email" name="email" required>
+  
+    <button type="submit">Enviar</button>
+  </form>
+  
+  <div id="form-messages"></div>
+  
+  <script>
+  // Adiciona um evento de envio ao formulário
+  document.getElementById("contact-form").addEventListener("submit", function(event) {
+    // Impede o envio do formulário
+    event.preventDefault();
+  
+    // Cria um objeto FormData com os dados do formulário
+    let formData = new FormData(this);
+  
+    // Envia a requisição AJAX para o servidor
+    fetch("http://localhost:8080/script.php", {
+      method: "POST",
+      body: formData
+    })
+    .then(function(response) {
+      // Verifica se a resposta do servidor foi bem-sucedida
+      if (response.ok) {
+        // Limpa os campos do formulário
+        document.getElementById("name").value = "";
+        document.getElementById("email").value = "";
+  
+        // Exibe uma mensagem de sucesso
+        document.getElementById("form-messages").innerHTML = "Obrigado por entrar em contato!";
+      } else {
+        // Exibe uma mensagem de erro
+        document.getElementById("form-messages").innerHTML = "Ocorreu um erro ao enviar a mensagem. Tente novamente mais tarde.";
+      }
+    })
+    .catch(function(error) {
+      // Exibe uma mensagem de erro genérica
+      document.getElementById("form-messages").innerHTML = "Ocorreu um erro ao enviar a mensagem. Tente novamente mais tarde.";
+    });
+  });
+  </script>
 </html>
+
+<!-- <!-- function composicao(fn1, fn2, fn3, valor) {
+    return fn3(fn2(fn1(valor)))
+}
+
+function gritar (texto) {
+    return texto.toUpperCase()
+}
+
+function enfatizar (texto) {
+    return '${texto}!!!!!'
+}
+
+function solicitar (texto) {
+    return texto.split('').join(' ')
+}
+
+const resultado = composicao(
+    gritar
+    enfatizar
+    solicitar
+)('ARRAYYYYYYYYYYYYYYYYY')
+
+console.log(resultado)
+-->
